@@ -19,7 +19,7 @@ public class HomeworkOne {
 	/** 
 	 * Reads a .csv file and creates 
 	 * Person objects that are later stored
-	 * in an Array 
+	 * in an Array
 	 * */ 
 	
 	

@@ -10,10 +10,11 @@ import java.util.Scanner;
  * */ 
 public class PersonDataManager{
 		//**************************************************
-		//Fields 
+		//Fields 1
 		//**************************************************
 				
 		private Person[] people;
+		private Person[] dogs; 
 		
 		//**************************************************
 		//Constructors
