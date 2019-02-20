@@ -14,7 +14,6 @@ public class PersonDataManager{
 		//**************************************************
 				
 		private Person[] people;
-		private Person[] dogs; 
 		
 		//**************************************************
 		//Constructors
@@ -43,16 +42,18 @@ public class PersonDataManager{
 			}catch(IOException e) {
 				System.out.println("File read error"); 
 			}
-			PersonDataManager list = new PersonDataManager(arrSize); 
+			PersonDataManager pdm = new PersonDataManager(arrSize); 
+			
 			try {
 				Scanner listIn = new Scanner(new File(location));
 				listIn.useDelimiter(split); 
 				while(listIn.hasNextLine()) {
 					indiv = new String[5]; 
-					for(int i = 0; i < 5;i++) {
+					for(int i = 0; i < 4;i++) {
+						System.out.println(i);
 						indiv[i] = listIn.next(); 
+						
 					}
-					count++; 
 					
 				}
 			} catch (FileNotFoundException e) {
@@ -65,10 +66,12 @@ public class PersonDataManager{
 					
 				
 			
-			return list; 
+			return pdm; 
 			
 		}
 		public void addPerson(Person newPerson) throws PersonAlreadyExistsException{
-			
+			for(int i = 0; i < 5; i++) {
+				
+			}
 		}
 	}
