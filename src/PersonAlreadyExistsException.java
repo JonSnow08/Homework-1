@@ -7,9 +7,7 @@
 public class PersonAlreadyExistsException extends Exception {
 	
 	public PersonAlreadyExistsException(){
-		
+		System.out.println("I'm sorry but this person already exists."); 
 	}
-	public PersonAlreadyExistsException(String cause){
-		
-	}
+	
 }

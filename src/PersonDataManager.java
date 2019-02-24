@@ -81,7 +81,45 @@ public class PersonDataManager{
 
 		
 		public void addPerson(Person newPerson) throws PersonAlreadyExistsException{
+			boolean flag = false; 
+			int length; 
 			
+			for(int i = 0; i < people.length; i++) {
+				if(people[i].getName().length() >= newPerson.getName().length()) {
+					length = people[i].getName().length(); 
+				}else {
+					length = newPerson.getName().length(); 
+				}
+				for(int j = 0; j < length; j++) {
+					if(people[i].getName().charAt(j) == newPerson.getName().charAt(j)) {
+						if(j == people[i].getName().length() - 1) {
+							flag = true; 
+						}
+						continue; 
+					}else {
+						break; 
+					}
+				}
+			}
+			if(flag) {
+				throw new PersonAlreadyExistsException(); 
+			}
+			
+			for(int i = 0; i < people.length; i++) {
+				for(int j = 0; j < people[i].getName().length(); j++) {
+					if(people[i].getName().charAt(j) == newPerson.getName().charAt(j)) {
+						if(j == people[i].getName().length() - 1) {
+							flag = true; 
+						}
+						continue; 
+					}else {
+						break; 
+					}
+				}
+			}
+			if(flag) {
+				throw new PersonAlreadyExistsException(); 
+			}
 			
 		}
 		
