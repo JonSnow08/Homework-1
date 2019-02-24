@@ -78,8 +78,15 @@ public class PersonDataManager{
 			
 		}
 		public void addPerson(Person newPerson) throws PersonAlreadyExistsException{
+			int index = 0; 
 			
-			this.people[counter] = newPerson; 
 			
+		}
+		public boolean checkAlphabet(String a, String b) {
+			for(int i = 0; i < a.length(); i++) {
+				if(a.charAt(i) <= b.charAt(i)) {
+					continue; 
+				}else if(a.charAt(i) > )
+			}
 		}
 	}

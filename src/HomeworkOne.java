@@ -13,6 +13,7 @@ public class HomeworkOne {
 
 	public static void main(String[] args) {
 			PersonDataManager.buildFromFile("biostats.csv"); 
+			System.out.println();
 
 	}
 	
