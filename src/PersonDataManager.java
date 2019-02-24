@@ -77,16 +77,47 @@ public class PersonDataManager{
 			return pdm; 
 			
 		}
+
+
+		
 		public void addPerson(Person newPerson) throws PersonAlreadyExistsException{
-			int index = 0; 
 			
 			
 		}
+		
+		public void removePerson(String name) throws PersonDoesNotExistException{
+			boolean flag = true; 
+			for(int i = 0; i < this.people.length; i++) {
+				if(people[i].getName().equalsIgnoreCase(name) ) {
+					flag = false; 
+					for(int j = i ; j < this.people.length; j++) {
+						if(j  == this.people.length - 1) {
+							break; 
+						}
+						people[j] = people [j + 1];  
+						
+					}
+				}
+			}
+			if(flag) {
+				throw new PersonDoesNotExistException(); 
+			}
+		}
+		
+		/** 
+		 * @param String a A string value containing a name
+		 * @param String b A string value containing a name 
+		 * @return Returns a boolean value that is true when String a is 
+		 * alphabetically greater than String b. 
+		 * */ 
 		public boolean checkAlphabet(String a, String b) {
 			for(int i = 0; i < a.length(); i++) {
 				if(a.charAt(i) <= b.charAt(i)) {
 					continue; 
-				}else if(a.charAt(i) > )
+				}else if(a.charAt(i) > b.charAt(i) ) {
+					return true; 
+				}
 			}
+			return false; 
 		}
 	}
