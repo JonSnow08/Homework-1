@@ -26,8 +26,8 @@ public class Person{
 			this.gender = gender; 
 		}
 		public Person(String[] individual){
-			this.name = individual[0]; 
-			this.gender = individual[1];
+			this.name = individual[0].substring(1, individual[0].length()-1); 
+			this.gender = individual[1].substring(1, individual[0].length()-1);
 			this.age = Integer.parseInt(individual[2]);
 			this.height = Double.parseDouble(individual[3]);
 			this.weight = Double.parseDouble(individual[3]);
@@ -58,6 +58,6 @@ public class Person{
 		 * @return A String of information about the Person in tabular form. 
 		 *  */ 
 		public String toString() {
-			return ""; 
+			return this.name + " " + this.gender + " " + this.age + " " + this.height + " " + this.weight; 
 		}
 	}

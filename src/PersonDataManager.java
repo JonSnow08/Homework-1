@@ -1,5 +1,5 @@
 import java.io.*; 
-import java.util.Scanner; 
+import java.util.Scanner;
 
 /** 
  * CSE 214 
@@ -14,6 +14,7 @@ public class PersonDataManager{
 		//**************************************************
 				
 		private Person[] people;
+		private int counter = 0; 
 		
 		//**************************************************
 		//Constructors
@@ -45,21 +46,28 @@ public class PersonDataManager{
 			PersonDataManager pdm = new PersonDataManager(arrSize); 
 			
 			try {
-				Scanner listIn = new Scanner(new File(location));
-				listIn.useDelimiter(split); 
+				Scanner listIn = new Scanner(new File(location)); 
 				while(listIn.hasNextLine()) {
-					indiv = new String[5]; 
-					for(int i = 0; i < 4;i++) {
-						System.out.println(i);
-						indiv[i] = listIn.next(); 
-						
+					if(count == 0) continue; 
+					count++; 
+					if(count == arrSize) {
+						break; 
 					}
+					bioData = listIn.nextLine();
+					indiv = bioData.split(split);
+					Person patient = new Person(indiv); 
+					pdm.addPerson(patient);
+					System.out.println(pdm.people[count].toString());
+					
+					
 					
 				}
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} 
+			} catch(PersonAlreadyExistsException e) {
+				e.printStackTrace();
+			}
 			
 		
 					
@@ -70,8 +78,8 @@ public class PersonDataManager{
 			
 		}
 		public void addPerson(Person newPerson) throws PersonAlreadyExistsException{
-			for(int i = 0; i < 5; i++) {
-				
-			}
+			
+			this.people[counter] = newPerson; 
+			
 		}
 	}
