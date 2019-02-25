@@ -55,6 +55,7 @@ public class PersonDataManager{
 			PersonDataManager pdm = new PersonDataManager(arrSize); 
 			
 			try {
+				
 				Scanner listIn = new Scanner(new File(location)); 
 				while(listIn.hasNextLine()) {
 					if(count == 0) continue; 
