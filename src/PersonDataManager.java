@@ -23,6 +23,15 @@ public class PersonDataManager{
 		public PersonDataManager(int size) {
 			people = new Person[size]; 
 		}
+		public PersonDataManager(Person[] oldPeople, int index) {
+			people = new Person[oldPeople.length + 1];
+			for(int i = 0; i < oldPeople.length; i++) {
+				
+			}
+		}
+		public PersonDataManager(PersonDataManager oldPDM) {
+			this.people = new Person[oldPDM.people.length + 1]; 
+		}
 		public void PrintPeople(Person[] people) {
 			
 		}
@@ -81,8 +90,11 @@ public class PersonDataManager{
 
 		
 		public void addPerson(Person newPerson) throws PersonAlreadyExistsException{
-			boolean flag = false; 
+			boolean checkFlag = false; 
 			int length; 
+			boolean flag = false; 
+			int index = 0; 
+			Person temp; 
 			
 			for(int i = 0; i < people.length; i++) {
 				if(people[i].getName().length() >= newPerson.getName().length()) {
@@ -90,10 +102,10 @@ public class PersonDataManager{
 				}else {
 					length = newPerson.getName().length(); 
 				}
-				for(int j = 0; j < length; j++) {
+				for(int j = 0; j < Math.min(newPerson.getName().length(), people[i].getName().length()); j++) {
 					if(people[i].getName().charAt(j) == newPerson.getName().charAt(j)) {
-						if(j == people[i].getName().length() - 1) {
-							flag = true; 
+						if(j == Math.min(newPerson.getName().length(), people[i].getName().length())) {
+							checkFlag = true; 
 						}
 						continue; 
 					}else {
@@ -101,25 +113,18 @@ public class PersonDataManager{
 					}
 				}
 			}
-			if(flag) {
+			if(checkFlag) {
 				throw new PersonAlreadyExistsException(); 
 			}
 			
 			for(int i = 0; i < people.length; i++) {
-				for(int j = 0; j < people[i].getName().length(); j++) {
-					if(people[i].getName().charAt(j) == newPerson.getName().charAt(j)) {
-						if(j == people[i].getName().length() - 1) {
-							flag = true; 
-						}
-						continue; 
-					}else {
-						break; 
-					}
+				
+				if(checkAlphabet(people[i].getName(), newPerson.getName())) {
+					
+					
 				}
-			}
-			if(flag) {
-				throw new PersonAlreadyExistsException(); 
-			}
+				
+			}	
 			
 		}
 		
@@ -148,9 +153,17 @@ public class PersonDataManager{
 		 * @return Returns a boolean value that is true when String a is 
 		 * alphabetically greater than String b. 
 		 * */ 
+		
+		// Fix this method, explanation in texts 
 		public boolean checkAlphabet(String a, String b) {
-			for(int i = 0; i < a.length(); i++) {
+			boolean flag = true; 
+			for(int i = 0; i < Math.min(a.length(), b.length()); i++) {
 				if(a.charAt(i) <= b.charAt(i)) {
+					if(a.charAt(i) != b.charAt(i)) {
+						flag = false; 
+					}else if(i == Math.min(a.length(), b.length()) && flag == true) {
+						return false; 
+					}
 					continue; 
 				}else if(a.charAt(i) > b.charAt(i) ) {
 					return true; 
@@ -158,4 +171,6 @@ public class PersonDataManager{
 			}
 			return false; 
 		}
+		
+		
 	}

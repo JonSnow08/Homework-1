@@ -60,4 +60,27 @@ public class Person{
 		public String toString() {
 			return this.name + " " + this.gender + " " + this.age + " " + this.height + " " + this.weight; 
 		}
+		
+		/** 
+		 * 
+		 * @param Person a A Person object containing biodata
+		 * @param Person b A Person object containing biodata
+		 * @return A boolean value signifying whether the two Person objects passed in are identical. 
+		 * 
+		 * */ 
+		public boolean samePerson(Person a, Person b) {
+			boolean flag = true; 
+			if(!(a.getName().equalsIgnoreCase(b.getName()))) {
+				flag = false; 
+			}else if(a.getAge() != b.getAge()) {
+				flag = false; 
+			}else if((a.getGender().equalsIgnoreCase(b.getGender()))) {
+				flag = false; 
+			}else if(a.getHeight() != b.getHeight()) {
+				flag = false; 
+			}else if(a.getWeight() != b.getWeight()) {
+				flag = false; 
+			}
+			return flag; 
+		}
 	}

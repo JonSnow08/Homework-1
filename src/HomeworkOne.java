@@ -12,8 +12,8 @@ import java.io.*;
 public class HomeworkOne {
 
 	public static void main(String[] args) {
-			PersonDataManager.buildFromFile("biostats.csv"); 
-			System.out.println();
+			PersonDataManager ty = new PersonDataManager(1);
+			System.out.println(ty.checkAlphabet("b", "a"));
 
 	}
 	
