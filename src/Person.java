@@ -26,11 +26,21 @@ public class Person{
 			this.gender = gender; 
 		}
 		public Person(String[] individual){
+			//Valid data test
+			individual = validatePersonArray(individual); 
 			this.name = individual[0].substring(1, individual[0].length()-1); 
-			this.gender = individual[1].substring(1, individual[0].length()-1);
+			this.gender = individual[1].substring(1, individual[1].length()-1);
 			this.age = Integer.parseInt(individual[2]);
 			this.height = Double.parseDouble(individual[3]);
-			this.weight = Double.parseDouble(individual[3]);
+			this.weight = Double.parseDouble(individual[4]);
+		}
+		
+		private String[] validatePersonArray(String[] individual){
+			
+			for(int i = 0; i < individual.length;i++) {
+				individual[i] = individual[i].trim(); 
+			}
+			return individual; 
 		}
 		//**************************************************
 		//Getters and Setters 

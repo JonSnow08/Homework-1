@@ -41,33 +41,43 @@ public class PersonDataManager{
 			String split = ","; 
 			int arrSize = 0; 
 			int count = 0; 
+			Scanner listIn = null; 
 			String[] indiv; //A temporary array to hold a person's biostats
-			try(BufferedReader reader = new BufferedReader(new FileReader(location))){
-				while(reader.readLine() != null) {
+			BufferedReader rdr = null; 
+			try{
+				rdr = new BufferedReader(new FileReader(location)); 
+				while(rdr.readLine() != null) {
 					arrSize++; 
 				}
-				reader.close();
 			}catch(FileNotFoundException e) {
 				System.out.println("File not found, please try again"); 
 			}catch(IOException e) {
 				System.out.println("File read error"); 
+			}finally {
+				try{rdr.close();}catch(Exception e) {
+					System.out.println("Thrown");
+				}
 			}
 			PersonDataManager pdm = new PersonDataManager(arrSize); 
 			
 			try {
 				
-				Scanner listIn = new Scanner(new File(location)); 
+				listIn = new Scanner(new File(location)); 
+				
 				while(listIn.hasNextLine()) {
-					if(count == 0) continue; 
-					count++; 
-					if(count == arrSize) {
+					if(count == 0) {
+						listIn.nextLine();
+						count++;
+					} 
+					if(count++ == arrSize - 2) {
 						break; 
 					}
 					bioData = listIn.nextLine();
 					indiv = bioData.split(split);
 					Person patient = new Person(indiv); 
 					pdm.addPerson(patient);
-					System.out.println(pdm.people[count].toString());
+					System.out.println("a");
+//					System.out.println(pdm.people[count].toString());
 					
 					
 					
@@ -97,36 +107,52 @@ public class PersonDataManager{
 			int index = 0; 
 			Person temp; 
 			
-			for(int i = 0; i < people.length; i++) {
-				if(people[i].getName().length() >= newPerson.getName().length()) {
-					length = people[i].getName().length(); 
+//			for(int i = 0; i < people.length; i++) {
+//				if(people[i].getName().length() >= newPerson.getName().length()) {
+//					length = people[i].getName().length(); 
+//				}else {
+//					length = newPerson.getName().length(); 
+//				}
+//				for(int j = 0; j < Math.min(newPerson.getName().length(), people[i].getName().length()); j++) {
+//					if(people[i].getName().charAt(j) == newPerson.getName().charAt(j)) {
+//						if(j == Math.min(newPerson.getName().length(), people[i].getName().length())) {
+//							checkFlag = true; 
+//						}
+//						continue; 
+//					}else {
+//						break; 
+//					}
+//				}
+//			}
+//			if(checkFlag) {
+//				throw new PersonAlreadyExistsException(); 
+//			}
+			
+//			for(int i = 0; i < people.length; i++) {
+//				
+//				if(checkAlphabet(people[i].getName(), newPerson.getName())) {
+//					
+//					
+//				}
+//				
+//			}	
+//			
+	}
+		
+		public boolean doesPersonExist(Person newPerson) {
+			private boolean flag;  
+			for(int i = 0; i < this.people.length;i++) {
+				if(this.people[i].getName().equalsIgnoreCase(newPerson.getName())) {
+					flag = true; 
 				}else {
-					length = newPerson.getName().length(); 
+					flag = false; 
 				}
-				for(int j = 0; j < Math.min(newPerson.getName().length(), people[i].getName().length()); j++) {
-					if(people[i].getName().charAt(j) == newPerson.getName().charAt(j)) {
-						if(j == Math.min(newPerson.getName().length(), people[i].getName().length())) {
-							checkFlag = true; 
-						}
-						continue; 
-					}else {
-						break; 
-					}
+				if(this.people[i].getGender().equalsIgnoreCase(newPerson.getGender())) {
+					
+				}else {
+					flag = false;
 				}
 			}
-			if(checkFlag) {
-				throw new PersonAlreadyExistsException(); 
-			}
-			
-			for(int i = 0; i < people.length; i++) {
-				
-				if(checkAlphabet(people[i].getName(), newPerson.getName())) {
-					
-					
-				}
-				
-			}	
-			
 		}
 		
 		public void removePerson(String name) throws PersonDoesNotExistException{
