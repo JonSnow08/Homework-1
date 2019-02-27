@@ -18,7 +18,7 @@ public class Person{
 		//**************************************************
 		//Constructors 
 		//**************************************************
-		public Person(int age, double height, double weight, String name, String gender) {
+		public Person(String name, String gender, int age, double height, double weight) {
 			this.age = age; 
 			this.height = height; 
 			this.weight = weight; 

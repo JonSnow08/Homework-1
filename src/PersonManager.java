@@ -9,14 +9,24 @@ import java.util.*;
 import java.io.*; 
 
 
-public class HomeworkOne {
-
+public class PersonManager {
+	
+	String userIn; 
 	public static void main(String[] args) {
 			
-			PersonDataManager.buildFromFile("biostats.csv"); 
+		PersonDataManager pdm = new PersonDataManager(PersonDataManager.buildFromFile("biostats.csv"));
+		pdm.printTable();
+			
+			
+			
 
 	}
 	
+	public void printMenu() {
+		System.out.println("(I) - Import from File");
+		System.out.println("(A)- Add Person");
+		System.out.println("(R)");
+	}
 
 	/** 
 	 * Reads a .csv file and creates 
