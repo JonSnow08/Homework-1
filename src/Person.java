@@ -68,7 +68,13 @@ public class Person{
 		 * @return A String of information about the Person in tabular form. 
 		 *  */ 
 		public String toString() {
-			return this.name + " " + this.gender + " " + this.age + " " + this.height + " " + this.weight; 
+			String gender; 
+			if(this.gender.equalsIgnoreCase("m")) {
+				gender = "male"; 
+			}else {
+				gender = "female"; 
+			}
+			return this.name + "is a " + this.age + " year old " + gender + " who is " + this.height/12 + " feet and " + this.height%12 + " inches and weights " + this.weight + " pounds." ;  
 		}
 		
 		/** 

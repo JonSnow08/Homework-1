@@ -99,6 +99,18 @@ public class PersonDataManager{
 			}
 			
 		}
+		public void saveTable(String fileName) throws IOException{
+			int colWidth = 15;
+			FileWriter fw = new FileWriter(fileName);
+			fw.append(padString(colWidth, "Name") + "," + padString(colWidth, "Age") + ","+ padString(colWidth, "Gender") + "," + padString(colWidth, "Height") + "," + padString(colWidth, "Weight") + "\n" ); 
+			
+			for(int i = 0; i < people.length; i++){
+				fw.append(padString(colWidth, this.people[i].getName()) + "," + padInt(colWidth, this.people[i].getAge()) + ","+ padString(colWidth, this.people[i].getGender()) + "," + padDouble(colWidth, this.people[i].getHeight()) + "," + padDouble(colWidth, this.people[i].getWeight()) + "\n" );
+			
+			}
+			
+			
+		}
 		
 		
 		public void getPerson(String name) throws PersonDoesNotExistException{
@@ -271,11 +283,14 @@ public class PersonDataManager{
 		public String padInt(int column, int num) {
 			int leftPadding = (column - 3) / 2;
 			var rightPadding = column - 3 - leftPadding;
-			return String.format("%s%f%s", " ".repeat(leftPadding), num, " ".repeat(rightPadding));
+			return String.format("%s%s%s", " ".repeat(leftPadding), num, " ".repeat(rightPadding));
 		}
 		public String padDouble(int column, double num) {
 			int leftPadding = (column - 3) / 2;
 			var rightPadding = column - 3 - leftPadding;
-			return String.format("%s%f%s", " ".repeat(leftPadding), num, " ".repeat(rightPadding));
+			return String.format("%s%s%s", " ".repeat(leftPadding), num, " ".repeat(rightPadding));
+		}
+		public int countArray() {
+			return this.people.length; 
 		}
 	}
